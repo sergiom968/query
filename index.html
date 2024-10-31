@@ -39,23 +39,27 @@
 							 	<tr class="">
 									<th scope="col" class="bg-origin-content bg-black px-2 py-2 text-center text-xs font-medium text-white uppercase">Día</th>
 									<th scope="col" class="bg-origin-content bg-black px-2 py-2 text-center text-xs font-medium text-white uppercase" v-for="n in 31">{{n}}</th>
+									<th scope="col" class="bg-origin-content bg-black px-2 py-2 text-center text-xs font-medium text-white uppercase">Total</th>
 								</tr>
 							</thead>
 							<tbody class="divide-y divide-gray-300 dark:divide-gray-700" v-for="row in info_data.data">
 								<tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-									<td scope="col" colspan="32" class="bg-origin-content bg-black px-2 py-2 text-center text-xs font-medium text-white uppercase">{{row.name}}</td>
+									<td scope="col" colspan="33" class="bg-origin-content bg-black px-2 py-2 text-center text-xs font-medium text-white uppercase">{{row.name}}</td>
 								</tr>
 								<tr class="divide-x divide-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
 									<td scope="col" class="px-2 py-1 text-left text-xs font-medium text-gray-500">1ra vez</td>
 									<td scope="col" class="px-2 py-1 text-center text-xs font-medium text-gray-500 uppercase" v-for="index in 31">{{row.rows.find((_row) => {return _row.index == index}).firstTime}}</td>
+									<td scope="col" class="px-2 py-1 text-center text-xs font-medium text-gray-500">Canceladas: {{row.totalCancelled}}
 								</tr>
 								<tr class="divide-x divide-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
 									<td scope="col" class="px-2 py-1 text-left text-xs font-medium text-gray-500">Control</td>
 									<td scope="col" class="px-2 py-1 text-center text-xs font-medium text-gray-500 uppercase" v-for="index in 31">{{row.rows.find((_row) => {return _row.index == index}).control}}</td>
+									<td scope="col" class="px-2 py-1 text-center text-xs font-medium text-gray-500">Inasistencias: {{row.totalAbscence}}
 								</tr>
 								<tr class="divide-x divide-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
 									<td scope="col" class="bg-origin-content bg-gray-200 px-2 py-1 text-left text-xs font-medium text-black">Total</td>
 									<td scope="col" class="bg-origin-content bg-gray-200 px-2 py-1 text-center text-xs font-medium text-gray-500 uppercase" v-for="index in 31">{{row.rows.find((_row) => {return _row.index == index}).total}}</td>
+									<td scope="col" class="bg-origin-content bg-gray-200 px-2 py-1 text-left text-xs font-medium text-black">Total: {{row.totalMonth}}</td>
 								</tr>
 							</tbody>
 						</table>

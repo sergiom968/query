@@ -8,6 +8,7 @@ function getData(rows){
 	const slicedData = sliceData(rows, endPoits)
 	const cleanedData = cleanData(slicedData)
 	const data = formatData(cleanedData)
+	console.log(data)
 	return {
 		data,
 		cancelled,
@@ -55,9 +56,11 @@ function cleanData(slicedData){
 }
 
 function formatData(cleanedData){
+	console.log(cleanedData)
 	let data = []
 	cleanedData.forEach((group) => {
 		let filterDate = []
+		let totalMonth = 0, totalAbscence = 0, totalCancelled = 0
 		for(let i = 1; i <= 31; i++){
 			let firstTime = group.data.filter((row) => {
 				return moment(row[config.schema.dateColumn]).format("D") == i && row[config.schema.typeColumn] == 'Primera_Vez'
@@ -68,12 +71,22 @@ function formatData(cleanedData){
 			let total = group.data.filter((row) => {
 				return moment(row[config.schema.dateColumn]).format("D") == i
 			})
+			totalMonth += total.length
+			totalAbscence += group.data.filter((row) => {
+				return moment(row[config.schema.dateColumn]).format("D") == i && row[config.schema.stateColumn] == 'Incumplida'
+			}).length
+			totalCancelled += group.data.filter((row) => {
+				return moment(row[config.schema.dateColumn]).format("D") == i && row[config.schema.stateColumn] == 'Cancelada'
+			}).length
 			filterDate.push({index: i, total: total.length, firstTime: firstTime.length, control: control.length})
 		}
 		data.push({
 			document: group.document,
 			name: group.name,
-			rows: filterDate
+			rows: filterDate,
+			totalMonth,
+			totalAbscence,
+			totalCancelled
 		})
 	})
 	return data
