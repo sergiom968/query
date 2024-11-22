@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="es" class="h-full">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdn.tailwindcss.com"></script>
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-	<script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/config.js"></script>
-	<script src="js/excel.js"></script>
-	<title>Estadística consulta externa</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/excel.js"></script>
+		<title>Estadística consulta externa</title>
+	</head>
 	<body class="h-full">
 		<main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-12 lg:px-8", id="app">
 			<div class="text-center" v-if="!complete">
 				<h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">Estadisticas consulta</h1>
 				<p class="mt-6 text-base leading-7 text-gray-600">{{!file ? 'Por favor, seleccione el archivo excel generado por Dinamica gerencial' : 'Analizando archivo...'}}</p>
 				<div class="mx-auto max-w-xs mt-10" v-if="!file">
-					<input type="file" accept=".xls, .xlsx" @change="test($event)" class="block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-indigo-600 file:py-2.5 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-indigo-500 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
+					<input type="file" accept=".xlsx" @change="test($event)" class="block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-indigo-600 file:py-2.5 file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-indigo-500 focus:outline-none disabled:pointer-events-none disabled:opacity-60" />
 				</div>
 				 <div class="text-center mt-10" v-else>
 					<div role="status">

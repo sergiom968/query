@@ -8,7 +8,6 @@ function getData(rows){
 	const slicedData = sliceData(rows, endPoits)
 	const cleanedData = cleanData(slicedData)
 	const data = formatData(cleanedData)
-	console.log(data)
 	return {
 		data,
 		cancelled,
@@ -56,7 +55,6 @@ function cleanData(slicedData){
 }
 
 function formatData(cleanedData){
-	console.log(cleanedData)
 	let data = []
 	cleanedData.forEach((group) => {
 		let filterDate = []
